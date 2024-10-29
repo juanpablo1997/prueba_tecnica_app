@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          // Versión de JavaScript a la que se transpilará
+    "lib": ["dom", "dom.iterable", "esnext"], // Bibliotecas a incluir
+    "allowJs": true,                          // Permitir archivos .js
+    "skipLibCheck": true,                     // Saltar comprobaciones de tipo de archivos de definición
+    "strict": true,                           // Activar todas las comprobaciones de tipo estricto
+    "forceConsistentCasingInFileNames": true, // Fuerza el uso consistente de mayúsculas y minúsculas
+    "noEmit": true,                           // No generar archivos de salida
+    "esModuleInterop": true,                  // Habilitar la interoperabilidad de módulos ES
+    "module": "esnext",                       // Tipo de módulo
+    "moduleResolution": "node",               // Estrategia de resolución de módulos
+    "resolveJsonModule": true,                // Permitir la importación de archivos JSON
+    "isolatedModules": true,                   // Aislar módulos
+    "jsx": "react-jsx"                        // Configurar JSX para usar la nueva transformación
+  },
+  "include": ["src"],                         // Archivos a incluir
+  "exclude": ["node_modules"]                 // Archivos a excluir
+}
