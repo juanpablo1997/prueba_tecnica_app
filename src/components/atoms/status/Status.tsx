@@ -18,7 +18,7 @@ const Status: React.FC<StatusProps> = ({ montoTotal }) => {
     <div className="container-fluid rounded-1 custom-bg-primary text-white px-4 py-2 d-flex justify-content-between align-items-center shadow-sm">
       <div>
         <p>Gasto total</p>
-        <p className="fs-3 fw-bold">{`$ ${montoTotal}`}</p>
+        <p className="fs-1 fw-bold ">{`$ ${montoTotal}`}</p>
       </div>
       <div>
         <ButtonCustom

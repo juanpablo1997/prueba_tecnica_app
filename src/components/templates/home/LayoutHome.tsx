@@ -1,29 +1,46 @@
 import React from "react";
-import Sidebar from "../../organisms/sidebar/Sidebar";
-import BannerCustom from "../../molecules/banner/BannerCustom";
-import ExpensesList from "../../molecules/list/ExpensesList";
-import AddExpenseForm from "../../organisms/addExpenseForm/AddExpenseForm";
-import Status from "../../atoms/status/Status";
-import { expenses } from "../../../data.test";
+import "./LayoutHome.css";
+import clsx from "clsx";
 import { useSelector } from "react-redux";
+import { expenses } from "../../../data.test";
+import Status from "../../atoms/status/Status";
+import Modal from "../../molecules/modal/Modal";
 import { RootState } from "../../../redux/store";
 import Header from "../../organisms/header/Header";
-import "./LayoutHome.css";
 import Footer from "../../organisms/footer/Footer";
+import Sidebar from "../../organisms/sidebar/Sidebar";
+import BannerCustom from "../../molecules/banner/BannerCustom";
+import ExpensesList from "../../molecules/ExpensesList/ExpensesList";
+import AddExpenseForm from "../../organisms/addExpenseForm/AddExpenseForm";
 import TitleHeadCustom from "../../molecules/titleHeadCustom/TitleHeadCustom";
-import clsx from 'clsx';
 
 const Layout: React.FC = () => {
   const showAddExpenseForm = useSelector(
     (state: RootState) => state.status.showAddExpenseForm
   );
 
+  const openModal = useSelector(
+    (state: RootState) => state.status.isModalOpen
+  )
+
   return (
-    <div className={clsx('grid-container', { 'add-expense-form': showAddExpenseForm })}>
-      <div className="header"><Header /></div>
-      <div className="banner"><BannerCustom /></div>
-      <div className="sidebar"><Sidebar /></div>
-      <div className="status"><Status montoTotal="54,000.000"/></div>
+    <div
+      className={clsx("grid-container", {
+        "add-expense-form": showAddExpenseForm,
+      })}
+    >
+      <div className="header">
+        <Header />
+      </div>
+      <div className="banner">
+        <BannerCustom />
+      </div>
+      <div className="sidebar">
+        <Sidebar />
+      </div>
+      <div className="status">
+        <Status montoTotal="54,000.000" />
+      </div>
       <div className="filter">FILTERS</div>
       {showAddExpenseForm ? (
         <div className="addExpenseForm d-flex flex-column">
@@ -33,11 +50,17 @@ const Layout: React.FC = () => {
       ) : (
         <div className="expenseList d-flex flex-column justify-content-between">
           <TitleHeadCustom title="Lista de Gastos" />
-          <ExpensesList expenses={expenses}/>
+          <ExpensesList expenses={expenses} />
         </div>
       )}
+      {openModal && (
+        <Modal />
+        ) 
+      }
       <div className="graph">GRAPH</div>
-      <div className="footer"><Footer /></div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 };
