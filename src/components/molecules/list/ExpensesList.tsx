@@ -15,21 +15,23 @@ interface ExpensesListProps {
 
 const ExpensesList: React.FC<ExpensesListProps> = ({ expenses }) => {
   return (
-    <ul className="expenses-list">
-      {expenses.map((expense) => (
-        <li
-          key={expense.id}
-          className="list-item"
-        >
-          <Expense
-            date={expense.date}
-            category={expense.category}
-            description={expense.description}
-            amount={expense.amount}
-          />
-        </li>
-      ))}
-    </ul>
+    <div
+      className="container-fluid bg-white"
+      style={{ height: "510px", overflowY: "auto" }}
+    >
+      <ul className="expenses-list">
+        {expenses.map((expense) => (
+          <li key={expense.id} className="list-item">
+            <Expense
+              date={expense.date}
+              category={expense.category}
+              description={expense.description}
+              amount={expense.amount}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

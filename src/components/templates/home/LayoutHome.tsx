@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import Header from "../../organisms/header/Header";
 import "./LayoutHome.css";
+import Footer from "../../organisms/footer/Footer";
+import TitleHeadCustom from "../../molecules/titleHeadCustom/TitleHeadCustom";
 
 const Layout: React.FC = () => {
   const showAddExpenseForm = useSelector(
@@ -20,8 +22,14 @@ const Layout: React.FC = () => {
       <div className="header"><Header /></div>
       <div className="banner"><BannerCustom /></div>
       <div className="sidebar"><Sidebar /></div>
-      <div className="main">Main</div>
-      <div className="footer">Footer</div>
+      <div className="status"><Status montoTotal="54,000.000"/></div>
+      <div className="filter">FILTERS</div>
+      <div className="expenseList d-flex flex-column justify-content-between">
+        <TitleHeadCustom title="Agregar un nuevo gasto" />
+        <ExpensesList expenses={expenses}/>
+      </div>
+      <div className="graph">GRAPH</div>
+      <div className="footer"><Footer /></div>
     </div>
   );
 };

@@ -23,14 +23,17 @@ const Expense: React.FC<ExpenseProps> = ({
 
   return (
     <div
-      className={`d-flex flex-column fw-bold container-fluid mb-3 ${className}`}
+      className={`d-flex flex-column fw-bold container-fluid p-2 ${className}`}
     >
       {date && (
         <label className="mb-2 custom-text-primary fw-normal">{date}</label>
       )}
       <div className="custom-bg-primary text-white rounded-top d-flex justify-content-between p-2">
         <p>{category}</p>
-        <p className="fw-normal"><span className="fw-bold custom-text-secondary">$ </span>{`${amount}`}</p>
+        <p className="fw-normal">
+          <span className="fw-bold custom-text-secondary">$ </span>
+          {`${amount}`}
+        </p>
       </div>
       <div className="border border-1 rounded-bottom border-dark-subtle shadow-sm d-flex justify-content-between p-2">
         <p className="fw-normal custom-text-primary">{description}</p>

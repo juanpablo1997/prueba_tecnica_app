@@ -11,7 +11,7 @@ const TitleHeadCustom: React.FC<TitleHeadCustomProps> = ({
   color = "custom-bg-secondary",
 }) => {
   return (
-    <div className={`${color} rounded-top p-2 mb-2`}>
+    <div className={`${color} rounded-top p-2 mb-2 container-fluid`}>
       <Title level={5} color="white" weight="bold" align="left">
         {title}
       </Title>

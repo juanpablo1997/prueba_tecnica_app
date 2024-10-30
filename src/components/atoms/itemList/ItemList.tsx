@@ -7,7 +7,7 @@ interface itemProps {
 
 const ItemList: React.FC<itemProps> = ({ categoria, monto }) => {
   return (
-    <div className="d-flex justify-content-between">
+    <div className="">
       <p className="m-0">{categoria}</p>
       <p className="custom-text-secondary m-0">{`$ ${monto}`}</p>
     </div>
