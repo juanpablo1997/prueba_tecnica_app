@@ -23,7 +23,7 @@ const Expense: React.FC<ExpenseProps> = ({
 
   return (
     <div
-      className={`d-flex flex-column fw-bold container-fluid p-2 ${className}`}
+      className={`d-flex flex-column fw-bold container-fluid p-1 ${className}`}
     >
       {date && (
         <label className="mb-2 custom-text-primary fw-normal">{date}</label>
