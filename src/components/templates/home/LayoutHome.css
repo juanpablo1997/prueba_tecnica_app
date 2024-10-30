@@ -1,0 +1,102 @@
+.grid-container > * {
+    box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 4px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    grid-area: header;
+    background: blue;
+}
+
+.banner {
+    grid-area: banner;
+    background: red;
+    display: none;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background: firebrick;
+}
+
+.main {
+    grid-area: main;
+    background: violet;
+}
+
+.footer {
+    grid-area: footer;
+    background: green;
+}
+
+.grid-container {
+    min-width: 100px;
+    min-height: 100vh;
+    display: grid;
+    gap: 10px;
+    grid-template:
+      "header" 50px
+      "sidebar" 500px
+      "main" auto
+      "footer" 50px;
+}
+
+/* Celulares */
+@media (max-width: 599px) {
+    .grid-container {
+        grid-template:
+          "header" 50px
+          "sidebar" auto
+          "main" auto
+          "footer" 50px;
+    }
+}
+
+/* Tabletas */
+@media (min-width: 600px) and (max-width: 899px) {
+    .grid-container {
+        grid-template:
+          "header  header" 100px
+          "banner  banner" 100px
+          "sidebar main" auto
+          "footer  footer" 100px / 
+          350px auto;
+    }
+    .banner {
+        display: block;
+    }
+}
+
+/* PC */
+@media (min-width: 900px) and (max-width: 1199px) {
+    .grid-container {
+        grid-template:
+          "header  header" 60px
+          "banner  banner" 200px
+          "sidebar main" 500px
+          "footer  footer" auto /
+          400px auto;
+    }
+    .banner {
+        display: block;
+    }
+}
+
+/* TV y Pantallas grandes */
+@media (min-width: 1200px) {
+    .grid-container {
+        grid-template:
+          "header  header" 60px
+          "banner  banner" 200px
+          "sidebar main" 500px
+          "footer  footer" auto /
+          600px auto;
+    }
+    .banner {
+        display: block;
+    }
+}

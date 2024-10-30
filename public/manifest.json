@@ -1,0 +1,27 @@
+{
+    "short_name": "Esify",
+    "name": "Esify de Expensify",
+    "icons": [
+      {
+        "src": "favicon.ico",
+        "sizes": "16x16 32x32 48x48",
+        "type": "image/x-icon"
+      },
+      {
+        "src": "Logo.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "Logo.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "orientation": "portrait"
+  }
+  

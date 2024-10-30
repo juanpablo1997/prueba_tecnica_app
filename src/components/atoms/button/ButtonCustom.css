@@ -1,0 +1,32 @@
+.btn-custom {
+    transition: opacity 0.3s ease;
+  }
+  
+  .btn-custom:hover {
+    opacity: 0.8;
+  }
+  
+  /* btn icon custom */
+  .btn-icon-custom {
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    display: flex;
+    align-items: center;
+    color: #FFF;
+    outline: none;
+    border: 1px solid var(--bs-secondary);
+    border-radius: 2px;
+    background: var(--bs-secondary);
+  }
+
+  .btn-icon-custom:hover {
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    display: flex;
+    align-items: center;
+    color: var(--bs-secondary);
+    outline: none;
+    border: 1px solid var(--bs-secondary);
+    border-radius: 2px;
+    background: transparent;
+  }
