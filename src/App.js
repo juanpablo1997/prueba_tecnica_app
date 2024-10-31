@@ -7,12 +7,12 @@ import Footer from "./components/organisms/footer/Footer";
 function App() {
   return (
     <Router>
-      <main>
+      <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/acerca-de" element={<About />} />
         </Routes>
-      </main>
+      <Footer/>
     </Router>
   );
 }

@@ -1,74 +1,69 @@
 .grid-container {
-    min-height: 100vh;
-    display: grid;
-    gap: 5px;
-    grid-template:
-      "header   header      header" 5%
-      "banner   banner      banner" auto
-      "sidebar  status      status" 10%
-      "sidebar  filter      filter" 10%
-      "sidebar  expenseList graph" auto
-      "footer   footer      footer" 15% /
-      20%       auto        40%;
-  }
-  
-  .grid-container.add-expense-form {
-    grid-template:
-      "header   header      header" 5%
-      "banner   banner      banner" auto
-      "sidebar  status      status" 10%
-      "sidebar  filter      filter" 10%
-      "sidebar  addExpenseForm graph" auto
-      "footer   footer      footer" 15% /
-      20%       auto        40%;
-  }
-  
-  .grid-container > * {
-    display: flex;
-    border-radius: 4px;
-    justify-content: center;
-    background-color: white;
-    box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.25);
-  }
-  
-  .addExpenseForm {
-    grid-area: addExpenseForm;
-    justify-content: flex-start;
-  }
-  
-  .header {
-    grid-area: header;
-  }
-  
-  .banner {
-    grid-area: banner;
-  }
-  
-  .sidebar {
-    grid-area: sidebar;
-  }
-  
-  .footer {
-    grid-area: footer;
-  }
-  
-  .status {
-    grid-area: status;
-  }
-  
-  .filter {
-    grid-area: filter;
-  }
-  
-  .expenseList {
-    grid-area: expenseList;
-  }
-  
-  .graph {
-    grid-area: graph;
-  }
-  
-  .addExpenseForm {
-    grid-area: addExpenseForm;
-  }
-  
+  min-height: 100vh;
+  display: grid;
+  gap: 5px;
+  grid-template:
+    "banner   banner      banner" auto
+    "banner   banner      banner" auto
+    "sidebar  status      status" 10%
+    "sidebar  filter      filter" 10%
+    "sidebar  expenseList graph" auto
+    "sidebar  expenseList graph" auto / 
+    25%       auto        40%;
+}
+
+.grid-container.add-expense-form {
+  grid-template:
+    "banner   banner      banner" auto
+    "banner   banner      banner" auto
+    "sidebar  status      status" 10%
+    "sidebar  filter      filter" 10%
+    "sidebar  addExpenseForm graph" auto
+    "sidebar  addExpenseForm graph" auto / 
+    25%       auto        40%;
+}
+
+.grid-container > * {
+  display: flex;
+  border-radius: 4px;
+  justify-content: center;
+  background-color: white;
+  box-shadow: -1px 1px 7px 0px rgba(0, 0, 0, 0.25);
+}
+
+.addExpenseForm {
+  grid-area: addExpenseForm;
+  justify-content: flex-start;
+}
+
+.header {
+  grid-area: header;
+}
+
+.banner {
+  grid-area: banner;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.status {
+  grid-area: status;
+}
+
+.filter {
+  grid-area: filter;
+}
+
+.expenseList {
+  grid-area: expenseList;
+}
+
+.graph {
+  grid-area: graph;
+}
