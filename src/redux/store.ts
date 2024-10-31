@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import statusReducer from './slices/statusSlice';
+import expenseReducer from './slices/expenseSlice';
 
 const store = configureStore({
   reducer: {
     status: statusReducer,
+    expenses: expenseReducer,
   },
 });
 

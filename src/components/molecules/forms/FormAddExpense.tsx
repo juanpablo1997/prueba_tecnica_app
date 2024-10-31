@@ -4,6 +4,8 @@ import SelectCustom from "../../atoms/inputs/SelectCustom";
 import DateInputCustom from "../../atoms/inputs/DateInputCustom";
 import { categoriasGastos } from "../../../data.test";
 import ButtonCustom from "../../atoms/button/ButtonCustom";
+import { addExpense } from "../../../services/expenseServices";
+import { toast } from 'react-hot-toast';
 
 const FormAddExpense: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ const FormAddExpense: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (
@@ -34,10 +36,38 @@ const FormAddExpense: React.FC = () => {
       alert("Please fill in all required fields.");
       return;
     }
+
+    const expense = {
+      amount: parseFloat(formData.amount), // Asegúrate de que sea un número decimal
+      description: formData.description,
+      category: formData.selectedOption, // Cambiado a category
+      date: new Date(formData.selectedDate).toISOString(), // Convertido a ISO
+    };
+
+    try {
+      await addExpense(expense);
+      console.log("Expense added successfully:");
+      toast.success("Gasto agregado con éxito!");
+      setFormData({
+        amount: "",
+        description: "",
+        selectedOption: "",
+        selectedDate: "",
+      });
+    } catch (error) {
+      console.error("Error adding expense:", error);
+      toast.error("Error al agregar el gasto. Intenta de nuevo.");
+    }
   };
 
-  const handleClick = () => {
-    console.log("Agregar gasto");
+  // Función intermedia para manejar el evento onClick
+  const handleButtonClick = () => {
+    const form = document.querySelector("form");
+    if (form) {
+      form.dispatchEvent(
+        new Event("submit", { cancelable: true, bubbles: true })
+      );
+    }
   };
 
   return (
@@ -78,7 +108,7 @@ const FormAddExpense: React.FC = () => {
         <div className="mt-3">
           <ButtonCustom
             label="Agregar gasto"
-            onClick={handleClick}
+            onClick={handleButtonClick} // Usa la función intermedia
             variant="solid"
             size="sm"
             fullWidth

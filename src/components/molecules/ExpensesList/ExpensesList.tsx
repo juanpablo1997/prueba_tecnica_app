@@ -1,24 +1,39 @@
-import React from "react";
-import Expense from "../expense/Expense";
+import React, { useEffect, useState } from "react";
+import Expense from "../expense/Expense"; // Ajusta la ruta según tu estructura de carpetas
+import { getAllExpenses } from "../../../services/expenseServices"; // Ajusta la ruta según tu estructura de carpetas
+import { expenseType } from "../../../types/expenseTypes";
 
-interface Expense {
-  id: number;
-  description: string;
-  amount: string;
-  date: string;
-  category: string;
-}
+const ExpensesList: React.FC = () => {
+  const [expenses, setExpenses] = useState<expenseType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-interface ExpensesListProps {
-  expenses: Expense[];
-}
+  useEffect(() => {
+    const fetchExpenses = async () => {
+      try {
+        const data = await getAllExpenses();
+        setExpenses(data);
+      } catch (err) {
+        setError("Failed to fetch expenses");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-const ExpensesList: React.FC<ExpensesListProps> = ({ expenses }) => {
+    fetchExpenses();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Puedes personalizar el mensaje de carga
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Muestra un mensaje de error
+  }
+
   return (
-    <div
-      className="container-fluid bg-white"
-      style={{ height: "510px", overflowY: "auto" }}
-    >
+    <div className="container-fluid bg-white" style={{ height: "510px", overflowY: "auto" }}>
       <ul className="expenses-list">
         {expenses.map((expense) => (
           <li key={expense.id} className="list-item">

@@ -41,6 +41,7 @@ const ButtonCustom: React.FC<ButtonCustomProps> = ({
       style={variant === "solid" ? solidStyle : outlinedStyle}
       onClick={onClick}
       disabled={disabled}
+      type="button" // Añadir el tipo de botón
     >
       {label}
     </button>

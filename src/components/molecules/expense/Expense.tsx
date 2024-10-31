@@ -2,14 +2,14 @@ import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import ButtonIcon from "../../atoms/button/ButtonIconCustom";
-import { openModal, openConfirmationModal } from "../../../redux/slices/statusSlice";
+import { openModal, openConfirmationModal, setExpenseIdToDelete } from "../../../redux/slices/statusSlice"; // Asegúrate de importar setExpenseIdToDelete
 
 interface ExpenseProps {
-  date?: string;
-  category?: string;
-  description?: string;
-  amount?: string;
-  className?: string;
+  amount: number; // Este es un number
+  description: string;
+  category: string;
+  date: string; // Asegúrate de que esto coincida con lo que devuelve tu servicio
+  className?: string
 }
 
 const Expense: React.FC<ExpenseProps> = ({
@@ -22,19 +22,22 @@ const Expense: React.FC<ExpenseProps> = ({
   const dispatch = useDispatch();
 
   const handleOpenModal = () => {
-    dispatch(openModal());
-  };
+    console.log("edit")
+  }
 
-  const handleOpenConfirmationModal = () => {
-    dispatch(openConfirmationModal());
-  };
+  // Verificar si date está definido y formatear la fecha
+  const formattedDate = date
+    ? new Date(date).toLocaleDateString("es-ES", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      })
+    : "Fecha no disponible"; // Valor por defecto si date es undefined
 
   return (
-    <div
-      className={`d-flex flex-column fw-bold container-fluid p-1 ${className}`}
-    >
+    <div className={`d-flex flex-column fw-bold container-fluid p-1 ${className}`}>
       {date && (
-        <label className="mb-2 custom-text-primary fw-normal">{date}</label>
+        <label className="mb-2 custom-text-primary fw-normal">{formattedDate}</label>
       )}
       <div className="custom-bg-primary text-white rounded-top d-flex justify-content-between p-2">
         <p>{category}</p>
@@ -47,12 +50,13 @@ const Expense: React.FC<ExpenseProps> = ({
         <p className="fw-normal custom-text-primary">{description}</p>
         <div className="d-flex">
           <ButtonIcon 
-            icon={<FaEdit />}
+            icon={<FaEdit />} 
             onClick={handleOpenModal} 
-            size="sm" />
+            size="sm" 
+          />
           <ButtonIcon
             icon={<FaTrash />}
-            onClick={handleOpenConfirmationModal}
+            onClick={() => console.log("Eliminar")}
             size="sm"
             className="ms-2"
           />

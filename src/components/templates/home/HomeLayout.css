@@ -62,6 +62,7 @@
 
 .expenseList {
   grid-area: expenseList;
+  justify-content: flex-start;
 }
 
 .graph {

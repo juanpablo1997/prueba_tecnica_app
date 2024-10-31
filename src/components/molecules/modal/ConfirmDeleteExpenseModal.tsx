@@ -3,23 +3,25 @@ import Title from "../../atoms/titles/TitlesCustom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { closeConfirmationModal } from "../../../redux/slices/statusSlice";
+import { deleteExpense } from "../../../services/expenseServices"; // Asegúrate de importar la función de eliminación
 import ButtonIcon from "../../atoms/button/ButtonIconCustom";
 import { FaCheck, FaTimes } from "react-icons/fa";
 
-interface ConfirmDeleteModalProps {
-  idExpense: number;
-}
-
-const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
-  idExpense,
-}) => {
+const ConfirmDeleteModal: React.FC = () => {
   const dispatch = useDispatch();
-
   const isConfirmationModalOpen = useSelector(
     (state: RootState) => state.status.isConfirmationModalOpen
   );
+  const expenseIdToDelete = useSelector(
+    (state: RootState) => state.status.expenseIdToDelete
+  );
 
-  if (!isConfirmationModalOpen) return null;
+  if (!isConfirmationModalOpen || expenseIdToDelete === undefined) return null;
+
+  const handleDelete = async () => {
+    await deleteExpense(expenseIdToDelete); // Llama a la función para eliminar el gasto
+    dispatch(closeConfirmationModal()); // Cerrar el modal
+  };
 
   return (
     <div className="modal-overlay">
@@ -36,7 +38,7 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({
         <div className="d-flex justify-content-end mt-4">
           <ButtonIcon
             icon={<FaCheck />}
-            onClick={() => console.log("Confirmation delete")}
+            onClick={handleDelete} // Llama a la función de eliminación
             size="sm"
           />
           <ButtonIcon

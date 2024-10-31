@@ -2,7 +2,7 @@ import React from "react";
 
 interface itemProps {
   categoria: string;
-  monto: string;
+  monto: number;
 }
 
 const ItemList: React.FC<itemProps> = ({ categoria, monto }) => {

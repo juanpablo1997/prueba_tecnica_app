@@ -1,4 +1,4 @@
-import "./LayoutHome.css";
+import "./HomeLayout.css";
 import React from "react";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
@@ -21,18 +21,18 @@ const Layout: React.FC = () => {
     (state: RootState) => state.status.showAddExpenseForm
   );
 
-  const openModal = useSelector(
-    (state: RootState) => state.status.isModalOpen
-  );
+  const openModal = useSelector((state: RootState) => state.status.isModalOpen);
 
   const isConfirmationModalOpen = useSelector(
     (state: RootState) => state.status.isConfirmationModalOpen
   );
 
   return (
-    <div className={clsx("grid-container", {
+    <div
+      className={clsx("grid-container", {
         "add-expense-form": showAddExpenseForm,
-      })}>
+      })}
+    >
       <div className="banner">
         <BannerCustom />
       </div>
@@ -49,15 +49,15 @@ const Layout: React.FC = () => {
           <AddExpenseForm />
         </div>
       ) : (
-        <div className="expenseList d-flex flex-column justify-content-between">
+        <div className="expenseList d-flex flex-column">
           <TitleHeadCustom title="Lista de Gastos" />
-          <ExpensesList expenses={expenses} />
+          <ExpensesList />
         </div>
       )}
-      
-      {openModal && (<Modal />)} 
-      {isConfirmationModalOpen && <ConfirmDeleteModal idExpense={1} />}
-      
+
+      {openModal && <Modal />}
+      {isConfirmationModalOpen && <ConfirmDeleteModal />}
+
       <div className="graph d-flex flex-column justify-content-start">
         <TitleHeadCustom title="Así van tus gastos" />
         <ExpenseChart />

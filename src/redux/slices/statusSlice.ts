@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Estados
 interface StatusState {
   showAddExpenseForm: boolean;
   isModalOpen: boolean;
   isConfirmationModalOpen: boolean;
-  expenseIdToDelete?: number;
+  expenseIdToDelete?: number; // Añadido para almacenar el ID del gasto a eliminar
 }
 
 // Estado inicial
@@ -13,6 +13,7 @@ const initialState: StatusState = {
   showAddExpenseForm: false,
   isModalOpen: false,
   isConfirmationModalOpen: false,
+  expenseIdToDelete: undefined, // Inicialmente indefinido
 };
 
 // Acciones
@@ -37,6 +38,10 @@ const statusSlice = createSlice({
     },
     closeConfirmationModal(state) {
       state.isConfirmationModalOpen = false;
+      state.expenseIdToDelete = undefined; // Reiniciar el ID al cerrar el modal
+    },
+    setExpenseIdToDelete(state, action: PayloadAction<number>) {
+      state.expenseIdToDelete = action.payload; // Establecer el ID del gasto a eliminar
     },
   },
 });
@@ -48,5 +53,7 @@ export const {
   closeModal,
   openConfirmationModal,
   closeConfirmationModal,
+  setExpenseIdToDelete, // Exportar la nueva acción
 } = statusSlice.actions;
+
 export default statusSlice.reducer;

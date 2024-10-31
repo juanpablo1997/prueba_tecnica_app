@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../templates/home/LayoutHome';
+import Layout from '../templates/home/HomeLayout';
 
 const Home: React.FC = () => {
   return (
