@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { hideAddExpenseForm } from "../../../redux/slices/statusSlice";
 import InputCustom from "../../atoms/inputs/InputCustom";
 import SelectCustom from "../../atoms/inputs/SelectCustom";
 import DateInputCustom from "../../atoms/inputs/DateInputCustom";
@@ -8,8 +6,6 @@ import { categoriasGastos } from "../../../data.test";
 import ButtonCustom from "../../atoms/button/ButtonCustom";
 
 const FormAddExpense: React.FC = () => {
-  const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({
     amount: "",
     description: "",
@@ -38,11 +34,6 @@ const FormAddExpense: React.FC = () => {
       alert("Please fill in all required fields.");
       return;
     }
-
-    console.log(
-      `Amount: ${formData.amount}, Description: ${formData.description}`
-    );
-    dispatch(hideAddExpenseForm());
   };
 
   const handleClick = () => {
@@ -50,57 +41,51 @@ const FormAddExpense: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <InputCustom
-        type="number"
-        name="amount"
-        placeholder="Monto"
-        value={formData.amount}
-        onChange={handleChange}
-        label="Cantidad"
-        required
-      />
-      <SelectCustom
-        name="selectedOption"
-        value={formData.selectedOption}
-        onChange={handleChange}
-        options={categoriasGastos}
-        label="Selecciona una Opción"
-        required
-      />
-      <DateInputCustom
-        name="selectedDate"
-        value={formData.selectedDate}
-        onChange={handleChange}
-        label="Selecciona una Fecha"
-        required
-      />
-      <InputCustom
-        type="text"
-        name="description"
-        placeholder="Escribe algo corto que puedas recordar"
-        value={formData.description}
-        onChange={handleChange}
-        label="Descripción del gasto"
-      />
-      <div className="mt-3">
-        <ButtonCustom
-          label="Agregar gasto"
-          onClick={handleClick}
-          variant="solid"
-          size="sm"
-          fullWidth
+    <>
+      <form onSubmit={handleSubmit}>
+        <InputCustom
+          type="number"
+          name="amount"
+          placeholder="Monto"
+          value={formData.amount}
+          onChange={handleChange}
+          label="Cantidad"
+          required
         />
-        <ButtonCustom
-          label="Cancelar"
-          onClick={() => dispatch(hideAddExpenseForm())}
-          variant="outlined"
-          size="sm"
-          fullWidth
-          className="mt-2"
+        <SelectCustom
+          name="selectedOption"
+          value={formData.selectedOption}
+          onChange={handleChange}
+          options={categoriasGastos}
+          label="Selecciona una Opción"
+          required
         />
-      </div>
-    </form>
+        <DateInputCustom
+          name="selectedDate"
+          value={formData.selectedDate}
+          onChange={handleChange}
+          label="Selecciona una Fecha"
+          required
+        />
+        <InputCustom
+          type="text"
+          name="description"
+          placeholder="Escribe algo corto que puedas recordar"
+          value={formData.description}
+          onChange={handleChange}
+          label="Descripción del gasto"
+        />
+        <div className="mt-3">
+          <ButtonCustom
+            label="Agregar gasto"
+            onClick={handleClick}
+            variant="solid"
+            size="sm"
+            fullWidth
+          />
+        </div>
+      </form>
+    </>
   );
 };
 

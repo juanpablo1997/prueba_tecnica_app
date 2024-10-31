@@ -1,5 +1,5 @@
-import React from "react";
 import "./LayoutHome.css";
+import React from "react";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { expenses } from "../../../data.test";
@@ -10,9 +10,11 @@ import Header from "../../organisms/header/Header";
 import Footer from "../../organisms/footer/Footer";
 import Sidebar from "../../organisms/sidebar/Sidebar";
 import BannerCustom from "../../molecules/banner/BannerCustom";
-import ExpensesList from "../../molecules/ExpensesList/ExpensesList";
+import ExpensesList from "../../molecules/expensesList/ExpensesList";
 import AddExpenseForm from "../../organisms/addExpenseForm/AddExpenseForm";
 import TitleHeadCustom from "../../molecules/titleHeadCustom/TitleHeadCustom";
+import ConfirmDeleteModal from "../../molecules/modal/ConfirmDeleteExpenseModal";
+import ExpenseChart from "../../molecules/expenseChart/ExpenseChart";
 
 const Layout: React.FC = () => {
   const showAddExpenseForm = useSelector(
@@ -22,6 +24,10 @@ const Layout: React.FC = () => {
   const openModal = useSelector(
     (state: RootState) => state.status.isModalOpen
   )
+
+  const isConfirmationModalOpen = useSelector(
+    (state: RootState) => state.status.isConfirmationModalOpen
+  );
 
   return (
     <div
@@ -53,11 +59,14 @@ const Layout: React.FC = () => {
           <ExpensesList expenses={expenses} />
         </div>
       )}
-      {openModal && (
-        <Modal />
-        ) 
-      }
-      <div className="graph">GRAPH</div>
+      
+      {openModal && (<Modal />)} 
+      {isConfirmationModalOpen && <ConfirmDeleteModal idExpense={1} />}
+
+      <div className="graph d-flex flex-column justify-content-start">
+        <TitleHeadCustom title="Así van tus gastos"  />
+        <ExpenseChart />
+      </div>
       <div className="footer">
         <Footer />
       </div>

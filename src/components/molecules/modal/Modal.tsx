@@ -1,8 +1,11 @@
 import "./Modal.css";
 import React from "react";
 import { RootState } from "../../../redux/store";
+import Title from "../../atoms/titles/TitlesCustom";
+import FormAddExpense from "../forms/FormAddExpense";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../../redux/slices/statusSlice";
+import ButtonCustom from "../../atoms/button/ButtonCustom";
 
 const Modal: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,10 +18,24 @@ const Modal: React.FC = () => {
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>Este es un Modal</h2>
-        <p>Contenido del modal aquí...</p>
-        <button onClick={() => dispatch(closeModal())}>Cerrar Modal</button>
+      <div className="bg-white rounded-1 p-3" style={{ width: "500px" }}>
+        <Title
+          level={2}
+          color="custom-text-primary"
+          weight="bold"
+          className="mb-3"
+        >
+          Editar gasto
+        </Title>
+        <FormAddExpense />
+        <ButtonCustom
+          label="Cancelar"
+          onClick={() => dispatch(closeModal())}
+          variant="outlined"
+          size="sm"
+          fullWidth
+          className="mt-2"
+        />
       </div>
     </div>
   );

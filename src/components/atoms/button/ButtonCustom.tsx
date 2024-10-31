@@ -6,7 +6,7 @@ interface ButtonCustomProps {
   label: string;
   onClick: () => void;
   variant?: "solid" | "outlined";
-  size?: string;
+  size?: "sm" | "md" | "lg"; // Define los tamaños aceptados
   disabled?: boolean;
   className?: string;
   fullWidth?: boolean;
@@ -16,7 +16,7 @@ const ButtonCustom: React.FC<ButtonCustomProps> = ({
   label,
   onClick,
   variant = "solid",
-  size,
+  size = "md",
   disabled = false,
   className = "",
   fullWidth = false,

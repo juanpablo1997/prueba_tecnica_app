@@ -10,7 +10,7 @@ interface StatusProps {
 const Status: React.FC<StatusProps> = ({ montoTotal }) => {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleShowAddExpenseForm = () => {
     dispatch(showAddExpenseForm());
   };
 
@@ -23,7 +23,7 @@ const Status: React.FC<StatusProps> = ({ montoTotal }) => {
       <div>
         <ButtonCustom
           label="Agregar un gasto"
-          onClick={handleClick}
+          onClick={handleShowAddExpenseForm}
           variant="solid"
           size="sm"
         />

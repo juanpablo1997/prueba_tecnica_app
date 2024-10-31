@@ -1,8 +1,8 @@
 import React from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
 import ButtonIcon from "../../atoms/button/ButtonIconCustom";
-import { openModal } from "../../../redux/slices/statusSlice"
+import { openModal, openConfirmationModal } from "../../../redux/slices/statusSlice";
 
 interface ExpenseProps {
   date?: string;
@@ -25,9 +25,9 @@ const Expense: React.FC<ExpenseProps> = ({
     dispatch(openModal());
   };
 
-  const handleClick = () => {
-    console.log("Delete Expense")
-  }
+  const handleOpenConfirmationModal = () => {
+    dispatch(openConfirmationModal());
+  };
 
   return (
     <div
@@ -46,10 +46,13 @@ const Expense: React.FC<ExpenseProps> = ({
       <div className="border border-1 rounded-bottom border-dark-subtle shadow-sm d-flex justify-content-between p-2">
         <p className="fw-normal custom-text-primary">{description}</p>
         <div className="d-flex">
-          <ButtonIcon icon={<FaEdit />} onClick={handleOpenModal} size="sm" />
+          <ButtonIcon 
+            icon={<FaEdit />}
+            onClick={handleOpenModal} 
+            size="sm" />
           <ButtonIcon
             icon={<FaTrash />}
-            onClick={handleClick}
+            onClick={handleOpenConfirmationModal}
             size="sm"
             className="ms-2"
           />

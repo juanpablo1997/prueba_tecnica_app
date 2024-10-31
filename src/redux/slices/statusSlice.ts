@@ -4,12 +4,15 @@ import { createSlice } from "@reduxjs/toolkit";
 interface StatusState {
   showAddExpenseForm: boolean;
   isModalOpen: boolean;
+  isConfirmationModalOpen: boolean;
+  expenseIdToDelete?: number;
 }
 
 // Estado inicial
 const initialState: StatusState = {
   showAddExpenseForm: false,
   isModalOpen: false,
+  isConfirmationModalOpen: false,
 };
 
 // Acciones
@@ -29,9 +32,21 @@ const statusSlice = createSlice({
     closeModal(state) {
       state.isModalOpen = false;
     },
+    openConfirmationModal(state) {
+      state.isConfirmationModalOpen = true;
+    },
+    closeConfirmationModal(state) {
+      state.isConfirmationModalOpen = false;
+    },
   },
 });
 
-export const { showAddExpenseForm, hideAddExpenseForm, openModal, closeModal } =
-  statusSlice.actions;
+export const {
+  showAddExpenseForm,
+  hideAddExpenseForm,
+  openModal,
+  closeModal,
+  openConfirmationModal,
+  closeConfirmationModal,
+} = statusSlice.actions;
 export default statusSlice.reducer;

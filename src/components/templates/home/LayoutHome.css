@@ -9,7 +9,7 @@
       "sidebar  filter      filter" 10%
       "sidebar  expenseList graph" auto
       "footer   footer      footer" 15% /
-      20% auto 30%;
+      20%       auto        40%;
   }
   
   .grid-container.add-expense-form {
@@ -20,7 +20,7 @@
       "sidebar  filter      filter" 10%
       "sidebar  addExpenseForm graph" auto
       "footer   footer      footer" 15% /
-      20% auto 30%;
+      20%       auto        40%;
   }
   
   .grid-container > * {
